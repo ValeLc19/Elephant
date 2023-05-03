@@ -1,10 +1,20 @@
 package com.organization.elephant.food
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.organization.elephant.R
 import com.organization.elephant.components.PrincipalTitle
+import com.organization.elephant.food.components.FoodScreenCard
 import com.organization.elephant.ui.theme.ElephantTheme
 
 @Composable
@@ -12,10 +22,25 @@ fun FoodScreen() {
     Column() {
         PrincipalTitle(
             title = "Food",
-            icon = {}
+            icon = {},
+        )
+        FoodScreenCard(
+            titleItem = "Meal Plan",
+            iconItemID = R.drawable.ic_meal_plan,
+        )
+        FoodScreenCard(
+            titleItem = "Grocery Store List",
+            iconItemID = R.drawable.ic_grocery,
+        )
+        FoodScreenCard(
+            titleItem = "Recipes",
+            iconItemID = R.drawable.ic_recipes,
+        )
+        FoodScreenCard(
+            titleItem = "Food Waste",
+            iconItemID = R.drawable.ic_food_waste,
         )
     }
-
 }
 
 @Preview(showSystemUi = true)
