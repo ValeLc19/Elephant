@@ -2,14 +2,21 @@ package com.organization.elephant.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.organization.elephant.R
+
+private val myCustomFont = FontFamily(
+    Font(R.font.font_comfortaa),
+)
 
 // Set of Material typography styles to start with
 val Typography = Typography(
     body1 = TextStyle(
-        fontFamily = FontFamily.Default,
+
+        fontFamily = myCustomFont,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     )
