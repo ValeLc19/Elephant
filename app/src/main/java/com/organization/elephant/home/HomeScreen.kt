@@ -1,59 +1,44 @@
-package com.organization.elephant.homescreen
+package com.organization.elephant.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Divider
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.organization.elephant.R
-import com.organization.elephant.homescreen.components.HomeScreenCard
+import com.organization.elephant.components.PrincipalTitle
+import com.organization.elephant.home.components.HomeScreenCard
 import com.organization.elephant.ui.theme.ElephantTheme
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    navigateToFood: () -> Unit
+) {
     Column {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 10.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.Bottom
-        ) {
-            Text(
-                text = "Good Morning",
-                fontSize = 30.sp,
-            )
-
-            Box(
-                modifier = Modifier
-                    .background(
-                        color = colorResource(id = R.color.weather_icon),
-                        shape = RoundedCornerShape(100)
+        PrincipalTitle(
+            title = "Good Morning",
+            icon = {
+                Box(
+                    modifier = Modifier
+                        .background(
+                            color = colorResource(id = R.color.weather_icon),
+                            shape = RoundedCornerShape(100)
+                        )
+                        .padding(5.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_raining),
+                        contentDescription = "weather icon"
                     )
-                    .padding(5.dp)
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_raining),
-                    contentDescription = "weather icon"
-                )
+                }
             }
-        }
-
-        Divider(
-            modifier = Modifier
-                .padding(horizontal = 35.dp)
-                .padding(top = 10.dp),
-            thickness = 2.dp
         )
+
 
         Row(
             horizontalArrangement = Arrangement.SpaceAround,
@@ -66,7 +51,7 @@ fun HomeScreen() {
                 title = "Food",
                 iconID = R.drawable.ic_food,
                 colorID = R.color.attribute_food,
-                onClick = {})
+                onClick = { navigateToFood() })
             HomeScreenCard(
                 title = "Task",
                 iconID = R.drawable.ic_task,
@@ -116,6 +101,8 @@ fun HomeScreen() {
 @Composable
 fun HomeScreenPreview() {
     ElephantTheme {
-        HomeScreen()
+        HomeScreen(
+            navigateToFood = {}
+        )
     }
 }

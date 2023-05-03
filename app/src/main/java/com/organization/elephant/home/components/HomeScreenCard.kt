@@ -1,4 +1,4 @@
-package com.organization.elephant.homescreen.components
+package com.organization.elephant.home.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
