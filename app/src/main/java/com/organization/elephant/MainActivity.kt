@@ -12,6 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.organization.elephant.food.FoodScreen
 import com.organization.elephant.home.HomeScreen
+import com.organization.elephant.mealplan.MealPlanScreen
 import com.organization.elephant.ui.theme.ElephantTheme
 
 class MainActivity : ComponentActivity() {
@@ -28,8 +29,23 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "Home") {
-                        composable("Home") { HomeScreen(navigateToFood = {navController.navigate("Food")}) }
-                        composable("Food") { FoodScreen() }
+                        composable("Home") {
+                            HomeScreen(
+                                navigateToFood = {
+                                    navController.navigate("Food")
+                                }
+                            )
+                        }
+                        composable("Food") {
+                            FoodScreen(
+                                navigateToMealPlan = {
+                                    navController.navigate("Meal Plan")
+                                }
+                            )
+                        }
+                        composable("Meal Plan"){
+                            MealPlanScreen()
+                        }
                     }
                 }
             }

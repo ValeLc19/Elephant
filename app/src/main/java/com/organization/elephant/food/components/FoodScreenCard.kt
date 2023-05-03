@@ -2,6 +2,7 @@ package com.organization.elephant.food.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
@@ -19,12 +20,14 @@ import com.organization.elephant.ui.theme.ElephantTheme
 fun FoodScreenCard(
     titleItem: String,
     iconItemID: Int,
+    onClick:()->Unit
 ) {
     Row(
         modifier = Modifier
             .height(120.dp)
             .fillMaxWidth()
             .padding(start = 30.dp, end = 30.dp, top = 20.dp)
+            .clickable { onClick() }
             .border(
                 width = 5.dp,
                 shape = RoundedCornerShape(10.dp),
@@ -50,7 +53,8 @@ fun FoodScreenCardPreview() {
     ElephantTheme() {
         FoodScreenCard(
             titleItem = "Item Name",
-            iconItemID = R.drawable.ic_food
+            iconItemID = R.drawable.ic_food,
+            onClick = {}
         )
     }
 }

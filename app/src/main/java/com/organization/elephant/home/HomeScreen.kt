@@ -51,12 +51,14 @@ fun HomeScreen(
                 title = "Food",
                 iconID = R.drawable.ic_food,
                 colorID = R.color.attribute_food,
-                onClick = { navigateToFood() })
+                onClick = { navigateToFood() }
+            )
             HomeScreenCard(
                 title = "Task",
                 iconID = R.drawable.ic_task,
                 colorID = R.color.attribute_task,
-                onClick = {})
+                onClick = {}
+            )
         }
 
         Row(

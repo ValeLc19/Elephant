@@ -18,7 +18,9 @@ import com.organization.elephant.food.components.FoodScreenCard
 import com.organization.elephant.ui.theme.ElephantTheme
 
 @Composable
-fun FoodScreen() {
+fun FoodScreen(
+    navigateToMealPlan: () -> Unit
+) {
     Column() {
         PrincipalTitle(
             title = "Food",
@@ -27,18 +29,22 @@ fun FoodScreen() {
         FoodScreenCard(
             titleItem = "Meal Plan",
             iconItemID = R.drawable.ic_meal_plan,
+            onClick = { navigateToMealPlan() }
         )
         FoodScreenCard(
             titleItem = "Grocery Store List",
             iconItemID = R.drawable.ic_grocery,
+            onClick = {}
         )
         FoodScreenCard(
             titleItem = "Recipes",
             iconItemID = R.drawable.ic_recipes,
+            onClick = {}
         )
         FoodScreenCard(
             titleItem = "Food Waste",
             iconItemID = R.drawable.ic_food_waste,
+            onClick = {}
         )
     }
 }
@@ -47,6 +53,8 @@ fun FoodScreen() {
 @Composable
 fun FoodScreenPreview() {
     ElephantTheme {
-        FoodScreen()
+        FoodScreen(
+            navigateToMealPlan = {}
+        )
     }
 }
