@@ -2,6 +2,7 @@ package com.organization.elephant.homescreen.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
@@ -21,9 +22,10 @@ fun HomeScreenCard(
     title:String,
     iconID:Int,
     colorID:Int,
+    onClick:()->Unit
 ) {
     Column(
-        modifier = Modifier
+        modifier = Modifier.clickable { onClick() }
             .height(150.dp)
             .width(111.dp)
             .border(
@@ -59,7 +61,8 @@ fun HomeScreenCardPreview(){
         HomeScreenCard(
             title = "Title",
             iconID = R.drawable.ic_places,
-            colorID = R.color.attribute_task
+            colorID = R.color.attribute_task,
+            onClick = {}
         )
     }
 }

@@ -62,8 +62,16 @@ fun HomeScreen() {
                 .fillMaxWidth(),
 
             ) {
-            HomeScreenCard(title = "Food", iconID = R.drawable.ic_food, colorID = R.color.attribute_food )
-            HomeScreenCard(title = "Task", iconID = R.drawable.ic_task, colorID = R.color.attribute_task)
+            HomeScreenCard(
+                title = "Food",
+                iconID = R.drawable.ic_food,
+                colorID = R.color.attribute_food,
+                onClick = {})
+            HomeScreenCard(
+                title = "Task",
+                iconID = R.drawable.ic_task,
+                colorID = R.color.attribute_task,
+                onClick = {})
         }
 
         Row(
@@ -72,8 +80,16 @@ fun HomeScreen() {
                 .padding(bottom = 45.dp)
                 .fillMaxWidth()
         ) {
-            HomeScreenCard(title = "Clean", iconID = R.drawable.ic_clean, colorID = R.color.attribute_clean)
-            HomeScreenCard(title = "Fitness", iconID = R.drawable.ic_fitness, colorID = R.color.attribute_fitness)
+            HomeScreenCard(
+                title = "Clean",
+                iconID = R.drawable.ic_clean,
+                colorID = R.color.attribute_clean,
+                onClick = {})
+            HomeScreenCard(
+                title = "Fitness",
+                iconID = R.drawable.ic_fitness,
+                colorID = R.color.attribute_fitness,
+                onClick = {})
         }
 
         Row(
@@ -82,8 +98,16 @@ fun HomeScreen() {
                 .padding(bottom = 45.dp)
                 .fillMaxWidth()
         ) {
-            HomeScreenCard(title = "Finances", iconID = R.drawable.ic_finances, colorID = R.color.attribute_finances )
-            HomeScreenCard(title = "Places", iconID = R.drawable.ic_places, colorID = R.color.attribute_places)
+            HomeScreenCard(
+                title = "Finances",
+                iconID = R.drawable.ic_finances,
+                colorID = R.color.attribute_finances,
+                onClick = {})
+            HomeScreenCard(
+                title = "Places",
+                iconID = R.drawable.ic_places,
+                colorID = R.color.attribute_places,
+                onClick = {})
         }
     }
 }
