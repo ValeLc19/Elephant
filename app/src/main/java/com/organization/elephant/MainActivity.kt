@@ -13,6 +13,8 @@ import androidx.navigation.compose.rememberNavController
 import com.organization.elephant.food.FoodScreen
 import com.organization.elephant.home.HomeScreen
 import com.organization.elephant.mealplan.MealPlanScreen
+import com.organization.elephant.mealplan.screens.ArchivedMealPlansScreen
+import com.organization.elephant.mealplan.screens.NewMealPlanScreen
 import com.organization.elephant.ui.theme.ElephantTheme
 
 class MainActivity : ComponentActivity() {
@@ -44,7 +46,20 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composable("Meal Plan"){
-                            MealPlanScreen()
+                            MealPlanScreen(
+                                navigateToNewMealPlanScreen = {
+                                    navController.navigate("New Meal Plan Screen")
+                                },
+                                navigateToArchivesMealPlanScreen ={
+                                    navController.navigate("Archived Meal Plan Screen")
+                                }
+                            )
+                        }
+                        composable("New Meal Plan Screen"){
+                            NewMealPlanScreen()
+                        }
+                        composable("Archived Meal Plan Screen"){
+                            ArchivedMealPlansScreen()
                         }
                     }
                 }
