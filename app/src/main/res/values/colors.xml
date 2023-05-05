@@ -26,4 +26,9 @@
     <color name="attribute_food">#91F3A7</color>
     <color name="attribute_places">#ED6169</color>
     <color name="attribute_task">#E856F4</color>
+    <color name="background_meal_plan">#F89494</color>
+    <color name="save_button">#33FF00</color>
+
+
+
 </resources>
