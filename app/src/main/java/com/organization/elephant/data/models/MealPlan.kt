@@ -3,10 +3,10 @@ package com.organization.elephant.data.models
 data class MealPlan(
     val startDateInMillis: Long,
     val endDateInMillis: Long,
-    val carbs: Int,
-    val fat: Int,
-    val protein: Int,
-    val calories: Int,
+    val carbs: Double,
+    val fat: Double,
+    val protein: Double,
+    val calories: Double,
     val mealGroups:List<MealGroup>
 ){
     var formattedStartDate:String = "01/02/1200"
