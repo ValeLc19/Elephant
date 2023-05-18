@@ -28,7 +28,7 @@ enum class MealGroupType(val displayName: String){
 
 //Representa las lineas a escribir la informacion
 data class MealItem(
-    val quantity: Float,
+    val quantity: Double,
     val name: String,
     val units: FoodMeasurementUnit,
 )

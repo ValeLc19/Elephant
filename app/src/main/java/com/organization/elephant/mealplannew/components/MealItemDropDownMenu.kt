@@ -1,4 +1,4 @@
-package com.organization.elephant.mealplan.components
+package com.organization.elephant.mealplannew.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -53,7 +53,7 @@ fun MealItemDropDownMenu(
                     .padding(start = 10.dp)
                     .fillMaxWidth(),
                 textAlign = TextAlign.Start,
-                fontSize = 14.sp,
+                fontSize = 20.sp,
                 color = Color.Black,
                 fontFamily = font,
             )

@@ -1,10 +1,9 @@
-package com.organization.elephant.mealplan.components
+package com.organization.elephant.mealplannew.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -22,7 +21,8 @@ import com.organization.elephant.data.models.MealItem
 
 @Composable
 fun MealGroupCard(
-    mealGroup: MealGroup
+    mealGroup: MealGroup,
+    onUpdateMealGroup: (mealGroup: MealGroup) -> Unit
 ) {
     var isEditing by remember { mutableStateOf(false) }
     var isMealGroupExpanded by remember { mutableStateOf(false) }
@@ -48,7 +48,7 @@ fun MealGroupCard(
                 )
                 Image(
                     modifier = Modifier.clickable {
-                        isEditing = true
+                        isEditing = !isEditing
                         isMealGroupExpanded = true
                     },
                     painter = painterResource(id = R.drawable.ic_edit),
@@ -56,8 +56,20 @@ fun MealGroupCard(
                 )
             }
             if (isMealGroupExpanded) {
-                mealGroup.mealItems.forEach { mealItem ->
-                    MealItemLine(mealItem = mealItem, editingMealItem = isEditing)
+                mealGroup.mealItems.forEachIndexed { index, mealItem ->
+                    MealItemLine(
+                        mealItem = mealItem,
+                        editingMealItem = isEditing,
+                        onUpdateMealItem = { updatedMealItem ->
+
+                            val updatedMutableList: MutableList<MealItem> = mealGroup.mealItems.toMutableList()
+                            updatedMutableList[index] = updatedMealItem
+
+                            val updatedMealGroup: MealGroup =
+                                mealGroup.copy(mealItems = updatedMutableList)
+                            onUpdateMealGroup(updatedMealGroup)
+                        }
+                    )
                 }
             }
         }
@@ -73,10 +85,11 @@ fun MealGroupCardPreview() {
             mealItems = listOf(
                 MealItem(
                     name = "fresas",
-                    quantity = 10.0f,
+                    quantity = 10.0,
                     units = FoodMeasurementUnit.GRAMS
                 )
             )
-        )
+        ),
+        onUpdateMealGroup = {},
     )
 }

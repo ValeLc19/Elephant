@@ -1,9 +1,9 @@
-package com.organization.elephant.mealplan.screens
+package com.organization.elephant.mealplannew.screens
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.organization.elephant.components.PrincipalTitle
-import com.organization.elephant.mealplan.MealPlanScreen
+import com.organization.elephant.mealplannew.MealPlanScreen
 import com.organization.elephant.ui.theme.ElephantTheme
 
 @Composable()
