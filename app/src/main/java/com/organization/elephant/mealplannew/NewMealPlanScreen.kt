@@ -1,4 +1,4 @@
-package com.organization.elephant.mealplannew.screens
+package com.organization.elephant.mealplannew
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.sp
 import com.organization.elephant.R
 import com.organization.elephant.components.PrincipalTitle
 import com.organization.elephant.data.models.*
-import com.organization.elephant.mealplannew.NewMealPlanState
 import com.organization.elephant.mealplannew.components.MealGroupCard
 import com.organization.elephant.ui.theme.ElephantTheme
 

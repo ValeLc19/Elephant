@@ -1,4 +1,4 @@
-package com.organization.elephant.mealplannew
+package com.organization.elephant.mealplan
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

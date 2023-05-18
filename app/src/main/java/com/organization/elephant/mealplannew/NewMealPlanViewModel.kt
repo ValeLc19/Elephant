@@ -9,6 +9,7 @@ class NewMealPlanViewModel() : ViewModel() {
 
     var state = MutableStateFlow<NewMealPlanState>(
         NewMealPlanState(
+            title = "Add New Meal Plan",
             mealPlan = MealPlan(
                 startDateInMillis = 1683244800000,
                 endDateInMillis = 1685923200000,
@@ -95,7 +96,6 @@ class NewMealPlanViewModel() : ViewModel() {
                     )
                 ),
             ),
-            title = "Add New Meal Plan"
         )
     )
 

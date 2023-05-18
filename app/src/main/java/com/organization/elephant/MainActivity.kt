@@ -15,10 +15,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.organization.elephant.food.FoodScreen
 import com.organization.elephant.home.HomeScreen
-import com.organization.elephant.mealplannew.MealPlanScreen
+import com.organization.elephant.mealplanlist.MealPlanListScreen
+import com.organization.elephant.mealplanlist.MealPlanListViewModel
+import com.organization.elephant.mealplan.MealPlanScreen
 import com.organization.elephant.mealplannew.NewMealPlanViewModel
-import com.organization.elephant.mealplannew.screens.ArchivedMealPlansScreen
-import com.organization.elephant.mealplannew.screens.NewMealPlanScreen
+import com.organization.elephant.mealplannew.NewMealPlanScreen
 import com.organization.elephant.ui.theme.ElephantTheme
 
 class MainActivity : ComponentActivity() {
@@ -36,33 +37,33 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = "Home"
+                        startDestination = Screen.HomeScreen.route
                     ) {
-                        composable("Home") {
+                        composable(Screen.HomeScreen.route) {
                             HomeScreen(
                                 navigateToFood = {
-                                    navController.navigate("Food")
+                                    navController.navigate(Screen.FoodScreen.route)
                                 }
                             )
                         }
-                        composable("Food") {
+                        composable(Screen.FoodScreen.route) {
                             FoodScreen(
                                 navigateToMealPlan = {
-                                    navController.navigate("Meal Plan")
+                                    navController.navigate(Screen.MealPlanScreen.route)
                                 }
                             )
                         }
-                        composable("Meal Plan") {
+                        composable(Screen.MealPlanScreen.route) {
                             MealPlanScreen(
                                 navigateToNewMealPlanScreen = {
-                                    navController.navigate("New Meal Plan Screen")
+                                    navController.navigate(Screen.NewMealPlanScreen.route)
                                 },
                                 navigateToArchivesMealPlanScreen = {
-                                    navController.navigate("Archived Meal Plan Screen")
+                                    navController.navigate(Screen.MealPlanListScreen.route)
                                 }
                             )
                         }
-                        composable("New Meal Plan Screen") {
+                        composable(Screen.NewMealPlanScreen.route) {
                             val viewModel: NewMealPlanViewModel by viewModels()
                             val state by viewModel.state.collectAsStateWithLifecycle()
 
@@ -73,8 +74,16 @@ class MainActivity : ComponentActivity() {
                                 }
                             )
                         }
-                        composable("Archived Meal Plan Screen") {
-                            ArchivedMealPlansScreen()
+                        composable(Screen.MealPlanListScreen.route) {
+                            val viewModel: MealPlanListViewModel by viewModels()
+                            val state by viewModel.state.collectAsStateWithLifecycle()
+
+                            MealPlanListScreen(
+                                state = state,
+                                onMealPlanPressed = {
+                                    navController.navigate(Screen.NewMealPlanScreen.route)
+                                }
+                            )
                         }
                     }
                 }

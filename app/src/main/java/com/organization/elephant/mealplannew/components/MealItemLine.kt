@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.sp
 import com.organization.elephant.R
 import com.organization.elephant.data.models.FoodMeasurementUnit
 import com.organization.elephant.data.models.MealItem
-import com.organization.elephant.mealplannew.screens.cleanDoubleTextFieldInput
+import com.organization.elephant.mealplannew.cleanDoubleTextFieldInput
 
 @Composable
 fun MealItemLine(
