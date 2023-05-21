@@ -11,7 +11,8 @@ import com.organization.elephant.ui.theme.ElephantTheme
 
 @Composable
 fun FoodScreen(
-    navigateToMealPlan: () -> Unit
+    navigateToMealPlan: () -> Unit,
+    navigateToGroceryScreen:()-> Unit
 ) {
     Column() {
         PrincipalTitle(
@@ -26,7 +27,7 @@ fun FoodScreen(
         FoodScreenCard(
             titleItem = "Grocery Store List",
             iconItemID = R.drawable.ic_grocery,
-            onClick = {}
+            onClick = {navigateToGroceryScreen()}
         )
         FoodScreenCard(
             titleItem = "Recipes",
@@ -46,7 +47,8 @@ fun FoodScreen(
 fun FoodScreenPreview() {
     ElephantTheme {
         FoodScreen(
-            navigateToMealPlan = {}
+            navigateToMealPlan = {},
+            navigateToGroceryScreen={}
         )
     }
 }

@@ -1,6 +1,7 @@
 package com.organization.elephant
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -14,10 +15,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.organization.elephant.food.FoodScreen
+import com.organization.elephant.grocery.GroceryScreen
+import com.organization.elephant.grocerylistitem.GroceryListScreen
+import com.organization.elephant.grocerylistitem.GroceryListViewModel
 import com.organization.elephant.home.HomeScreen
 import com.organization.elephant.mealplanlist.MealPlanListScreen
 import com.organization.elephant.mealplanlist.MealPlanListViewModel
 import com.organization.elephant.mealplan.MealPlanScreen
+import com.organization.elephant.mealplan.MealPlanViewModel
 import com.organization.elephant.mealplannew.NewMealPlanViewModel
 import com.organization.elephant.mealplannew.NewMealPlanScreen
 import com.organization.elephant.ui.theme.ElephantTheme
@@ -50,11 +55,18 @@ class MainActivity : ComponentActivity() {
                             FoodScreen(
                                 navigateToMealPlan = {
                                     navController.navigate(Screen.MealPlanScreen.route)
+                                },
+                                navigateToGroceryScreen = {
+                                    navController.navigate(Screen.GroceryScreen.route)
                                 }
                             )
                         }
                         composable(Screen.MealPlanScreen.route) {
+                            val viewModel: MealPlanViewModel by viewModels()
+                            val state by viewModel.state.collectAsStateWithLifecycle()
+
                             MealPlanScreen(
+                                state = state,
                                 navigateToNewMealPlanScreen = {
                                     navController.navigate(Screen.NewMealPlanScreen.route)
                                 },
@@ -82,6 +94,27 @@ class MainActivity : ComponentActivity() {
                                 state = state,
                                 onMealPlanPressed = {
                                     navController.navigate(Screen.NewMealPlanScreen.route)
+                                }
+                            )
+                        }
+
+                        composable(Screen.GroceryScreen.route) {
+                            GroceryScreen(
+                                navigateToGroceryListScreen = {
+                                    navController.navigate(Screen.GroceryListScreen.route)
+                                }
+                            )
+                        }
+
+                        composable(Screen.GroceryListScreen.route) {
+                            val viewModel: GroceryListViewModel by viewModels()
+                            val state by viewModel.state.collectAsStateWithLifecycle()
+
+                            GroceryListScreen(
+                                state = state,
+                                onUpdateNewItem = {
+                                    Log.e("debug", "Hey")
+                                    viewModel.updateNewItem(updatedItem = it)
                                 }
                             )
                         }

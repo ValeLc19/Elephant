@@ -58,6 +58,7 @@ fun MealGroupCard(
             if (isMealGroupExpanded) {
                 mealGroup.mealItems.forEachIndexed { index, mealItem ->
                     MealItemLine(
+                        showLine=true,
                         mealItem = mealItem,
                         editingMealItem = isEditing,
                         onUpdateMealItem = { updatedMealItem ->

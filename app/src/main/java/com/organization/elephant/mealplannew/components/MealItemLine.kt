@@ -24,6 +24,7 @@ import com.organization.elephant.mealplannew.cleanDoubleTextFieldInput
 fun MealItemLine(
     mealItem: MealItem,
     editingMealItem: Boolean,
+    showLine:Boolean,
     onUpdateMealItem: (updatedMealItem: MealItem) -> Unit
 ) {
     var isMenuExpanded by remember { mutableStateOf(false) }
@@ -91,11 +92,14 @@ fun MealItemLine(
             Text(text = "${mealItem.quantity} ${mealItem.units.abbreviation} ${mealItem.name}")
         }
 
-        Divider(
-            modifier = Modifier
-                .padding(end = 5.dp, top = 0.5.dp, bottom = 4.dp),
-            thickness = 2.dp
-        )
+        if(showLine){
+            Divider(
+                modifier = Modifier
+                    .padding(end = 5.dp, top = 0.5.dp, bottom = 4.dp),
+                thickness = 2.dp
+            )
+        }
+
     }
 }
 
@@ -103,6 +107,7 @@ fun MealItemLine(
 @Composable
 fun MealItemLinePreview() {
     MealItemLine(
+        showLine=true,
         mealItem = MealItem(
             name = "banana",
             quantity = 120.0,

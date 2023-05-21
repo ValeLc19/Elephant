@@ -7,5 +7,7 @@ enum class Screen(val route: String) {
     MealPlanScreen(route = "Meal Plan"),
     NewMealPlanScreen(route = "New Meal Plan Screen"),
     MealPlanListScreen(route="Meal Plan List Screen"),
+    GroceryScreen(route = "Grocery Screen"),
+    GroceryListScreen(route = "Grocery List Screen"),
 
 }

@@ -27,7 +27,7 @@ fun MealPlanListScreen(
             verticalAlignment = Alignment.Bottom
         ) {
             Text(
-                text = "All Meal Plans ",
+                text = state.title,
                 fontSize = 30.sp,
             )
         }
