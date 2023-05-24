@@ -34,8 +34,22 @@ data class MealItem(
 )
 
 enum class FoodMeasurementUnit(val abbreviation: String) {
-    GRAMS(abbreviation = "gr"),
-    OUNCES(abbreviation = "oz"),
+    BOTTLE(abbreviation = "btl"),
+    BOX(abbreviation = "box"),
+    DASH(abbreviation = "dash"),
+    DOZEN(abbreviation = "doz"),
     CUPS(abbreviation = "cup"),
+    GALLON(abbreviation = "gal"),
+    GRAMS(abbreviation = "gr"),
     MILLILITERS(abbreviation = "ml"),
+    OUNCES(abbreviation = "oz"),
+    PACKAGE(abbreviation = "pkg"),
+    PIECE(abbreviation = "pc"),
+    PINCH(abbreviation = "pinch"),
+    POUND(abbreviation = "lb"),
+    STICK(abbreviation = "stk"),
+    TEASPOON(abbreviation = "tsp"),
+    TABLESPOON(abbreviation = "tbsp"),
+
+
 }
