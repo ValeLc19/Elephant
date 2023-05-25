@@ -1,188 +1,47 @@
 package com.organization.elephant.ui.mealplanlist
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.organization.elephant.data.AppApi
+import com.organization.elephant.data.AppApiService
 import com.organization.elephant.data.models.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MealPlanListViewModel : ViewModel() {
     var state = MutableStateFlow<MealPlanListState>(
         MealPlanListState(
             title = "All Meal Plans",
-            mealPlans = listOf(
-                MealPlan(
-                    startDateInMillis = 1683244800000,
-                    endDateInMillis = 1685923200000,
-                    carbs = 160.0,
-                    fat = 30.0,
-                    protein = 160.0,
-                    calories = 1612.0,
-                    mealGroups = listOf(
-                        MealGroup(
-                            type = MealGroupType.BREAKFAST,
-                            mealItems = listOf(
-                                MealItem(
-                                    quantity = 120.0,
-                                    name = "apple",
-                                    units = FoodMeasurementUnit.GRAMS,
-                                ),
-                                MealItem(
-                                    quantity = 50.0,
-                                    name = "Milk",
-                                    units = FoodMeasurementUnit.MILLILITERS,
-                                )
-                            )
-                        ),
-                        MealGroup(
-                            type = MealGroupType.SNACK,
-                            mealItems = listOf(
-                                MealItem(
-                                    quantity = 30.0,
-                                    name = "egg whites",
-                                    units = FoodMeasurementUnit.GRAMS,
-                                ),
-                                MealItem(
-                                    quantity = 50.0,
-                                    name = "Milk",
-                                    units = FoodMeasurementUnit.MILLILITERS,
-                                )
-                            )
-                        ),
-                        MealGroup(
-                            type = MealGroupType.LUNCH,
-                            mealItems = listOf(
-                                MealItem(
-                                    quantity = 200.0,
-                                    name = "chicken",
-                                    units = FoodMeasurementUnit.OUNCES,
-                                ),
-                                MealItem(
-                                    quantity = 50.0,
-                                    name = "Milk",
-                                    units = FoodMeasurementUnit.MILLILITERS,
-                                )
-                            )
-                        ),
-                        MealGroup(
-                            type = MealGroupType.SNACK,
-                            mealItems = listOf(
-                                MealItem(
-                                    quantity = 50.0,
-                                    name = "Milk",
-                                    units = FoodMeasurementUnit.MILLILITERS,
-                                ),
-                                MealItem(
-                                    quantity = 50.0,
-                                    name = "Milk",
-                                    units = FoodMeasurementUnit.MILLILITERS,
-                                )
-
-                            )
-                        ),
-                        MealGroup(
-                            type = MealGroupType.DINNER,
-                            mealItems = listOf(
-                                MealItem(
-                                    quantity = 1.0,
-                                    name = "Nuts",
-                                    units = FoodMeasurementUnit.GRAMS,
-                                ),
-                                MealItem(
-                                    quantity = 20.5,
-                                    name = "Milk",
-                                    units = FoodMeasurementUnit.MILLILITERS,
-                                )
-                            )
-                        )
-                    ),
-                ),
-                MealPlan(
-                    startDateInMillis = 1683244800000,
-                    endDateInMillis = 1685923200000,
-                    carbs = 160.0,
-                    fat = 30.0,
-                    protein = 160.0,
-                    calories = 1612.0,
-                    mealGroups = listOf(
-                        MealGroup(
-                            type = MealGroupType.BREAKFAST,
-                            mealItems = listOf(
-                                MealItem(
-                                    quantity = 120.0,
-                                    name = "apple",
-                                    units = FoodMeasurementUnit.GRAMS,
-                                ),
-                                MealItem(
-                                    quantity = 50.0,
-                                    name = "Milk",
-                                    units = FoodMeasurementUnit.MILLILITERS,
-                                )
-                            )
-                        ),
-                        MealGroup(
-                            type = MealGroupType.SNACK,
-                            mealItems = listOf(
-                                MealItem(
-                                    quantity = 30.0,
-                                    name = "egg whites",
-                                    units = FoodMeasurementUnit.GRAMS,
-                                ),
-                                MealItem(
-                                    quantity = 50.0,
-                                    name = "Milk",
-                                    units = FoodMeasurementUnit.MILLILITERS,
-                                )
-                            )
-                        ),
-                        MealGroup(
-                            type = MealGroupType.LUNCH,
-                            mealItems = listOf(
-                                MealItem(
-                                    quantity = 200.0,
-                                    name = "chicken",
-                                    units = FoodMeasurementUnit.OUNCES,
-                                ),
-                                MealItem(
-                                    quantity = 50.0,
-                                    name = "Milk",
-                                    units = FoodMeasurementUnit.MILLILITERS,
-                                )
-                            )
-                        ),
-                        MealGroup(
-                            type = MealGroupType.SNACK,
-                            mealItems = listOf(
-                                MealItem(
-                                    quantity = 50.0,
-                                    name = "Milk",
-                                    units = FoodMeasurementUnit.MILLILITERS,
-                                ),
-                                MealItem(
-                                    quantity = 50.0,
-                                    name = "Milk",
-                                    units = FoodMeasurementUnit.MILLILITERS,
-                                )
-
-                            )
-                        ),
-                        MealGroup(
-                            type = MealGroupType.DINNER,
-                            mealItems = listOf(
-                                MealItem(
-                                    quantity = 1.0,
-                                    name = "Nuts",
-                                    units = FoodMeasurementUnit.GRAMS,
-                                ),
-                                MealItem(
-                                    quantity = 20.5,
-                                    name = "Milk",
-                                    units = FoodMeasurementUnit.MILLILITERS,
-                                )
-                            )
-                        )
-                    ),
-                ),
-
-            )
+            mealPlans = emptyList()
         ),
     )
+
+    init {
+        getMealPlans()
+    }
+
+    fun getMealPlans(){
+
+        viewModelScope.launch(Dispatchers.IO) {
+//            try{
+                val mealPlans = AppApi.retrofitService.getMealPlans()
+                Log.e("debug", "hwllo")
+                println(mealPlans)
+//                withContext(Dispatchers.Main){
+//                    state.update {
+//                        it.copy(mealPlans = mealPlans.body()!!)
+//                    }
+//                }
+//            } catch (e: Exception) {
+//                println(e.stackTrace)
+//            }
+        }
+
+
+    }
 }
+

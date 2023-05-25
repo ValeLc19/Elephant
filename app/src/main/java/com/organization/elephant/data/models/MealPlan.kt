@@ -1,6 +1,10 @@
 package com.organization.elephant.data.models
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class MealPlan(
+    val id:Int? = null,
     val startDateInMillis: Long,
     val endDateInMillis: Long,
     val carbs: Double,
@@ -14,11 +18,14 @@ data class MealPlan(
 }
 
 //Representa cada grupo del meal (breakfast etc)
+@Serializable
 data class MealGroup(
+    val id:Int? = null,
     val type:MealGroupType,
     val mealItems:List<MealItem>
 )
 
+@Serializable
 enum class MealGroupType(val displayName: String){
     BREAKFAST(displayName = "Breakfast"),
     SNACK(displayName = "Snack"),
@@ -27,12 +34,15 @@ enum class MealGroupType(val displayName: String){
 }
 
 //Representa las lineas a escribir la informacion
+@Serializable
 data class MealItem(
+    val id:Int? = null,
     val quantity: Double,
     val name: String,
     val units: FoodMeasurementUnit,
 )
 
+@Serializable
 enum class FoodMeasurementUnit(val abbreviation: String) {
     BOTTLE(abbreviation = "btl"),
     BOX(abbreviation = "box"),
@@ -50,6 +60,4 @@ enum class FoodMeasurementUnit(val abbreviation: String) {
     STICK(abbreviation = "stk"),
     TEASPOON(abbreviation = "tsp"),
     TABLESPOON(abbreviation = "tbsp"),
-
-
 }
